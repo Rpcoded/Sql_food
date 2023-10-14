@@ -1,4 +1,6 @@
+-- database being used
 use sql_tutorial;
+-- -- allowed me to check what datatypes were in the table nutrients
 desc nutrients;
 
 -- all data-----
@@ -33,7 +35,7 @@ set calories = 0
 where calories is null;
 
 
--- checking numbers over 999-----------------------------------
+-- checking numbers over 999 so i knew which needed their comma's removed-----------------------------------
 SELECT  calories FROM sql_tutorial.nutrients
 where calories > 999;
 
@@ -88,7 +90,7 @@ where grams = "1,100";
 
 -- data exploration----------------------------------------------------------------------
 
--- best foods for etc (fat, sfat, fiber, carbs, protein, calories)
+-- listing the top 10 in the food categories that should have the most benefit
 select protein, food, category from nutrients
 order by protein desc
 limit 10;
@@ -101,11 +103,7 @@ select carbs, food, category from nutrients
 order by carbs desc
 limit 10;
 
-select grams, food, category from nutrients
-order by grams desc
-limit 10;
-
--- avoidable foods for etc
+-- listing the top 10 in the food categories that should have the least benefit
 select fat, food, category from nutrients
 order by fat desc
 limit 10;
@@ -118,18 +116,17 @@ select calories, food, category from nutrients
 order by calories desc
 limit 10;
 
-
-
+-- measure of grams
+select grams, food, category from nutrients
+order by grams desc
+limit 10;
 
 -- categories-----------------------
 select category
 from nutrients
 group by category;
 
-
-
-
--- category by column--------------------
+-- category by column shows benefits in a broad sense--------------------
 select avg(protein), category
 from nutrients
 group by category
